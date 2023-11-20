@@ -26,6 +26,7 @@ func NewHandler(apiKey string, wspClient *whatsapp.Client) *Handler {
 }
 
 func (h *Handler) getResponse(ctx context.Context, msg string) string {
+	log.Infof("getResponse msg: %v", msg)
 	resp, err := h.openaiClient.CreateChatCompletion(
 		ctx,
 		openai.ChatCompletionRequest{
