@@ -50,6 +50,10 @@ func (h *Handler) getResponse(ctx context.Context, msg string) string {
 
 func (h *Handler) Execute(ctx context.Context, evt *events.Message) {
 	msg := evt.Message.GetConversation()
+	if evt.Info.IsFromMe || evt.Info.IsGroup {
+		log.Infof("msg is from me or from group %v", evt)
+		return
+	}
 	_, err := h.wspClient.SendMessage(ctx, types.NewJID(evt.Info.Chat.User, evt.Info.Chat.Server), &waProto.Message{
 		Conversation: proto.String(h.getResponse(ctx, msg)),
 	})
