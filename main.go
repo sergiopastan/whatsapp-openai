@@ -10,6 +10,7 @@ import (
 
 	"github.com/sergiopastan/whatsapp-openai/config"
 	"github.com/sergiopastan/whatsapp-openai/database"
+	"github.com/sergiopastan/whatsapp-openai/db"
 	"github.com/sergiopastan/whatsapp-openai/openai"
 	"github.com/sergiopastan/whatsapp-openai/whatsapp"
 )
@@ -17,6 +18,7 @@ import (
 func main() {
 	var conf = config.Load()
 	ctx := context.Background()
+	db.Keep()
 
 	configureLogger()
 	db, err := database.Connect(conf.DbConfig)

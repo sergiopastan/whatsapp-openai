@@ -2,6 +2,7 @@ package database
 
 import (
 	"database/sql"
+	_ "embed"
 	"fmt"
 
 	_ "github.com/mattn/go-sqlite3"
