@@ -75,13 +75,14 @@ func (c Client) getQR(ctx context.Context) (string, error) {
 	}
 	for evt := range ch {
 		if evt.Event == "code" {
+			log.Infof("qr code: %s", evt.Code)
 			qr, err := qrcode.New(evt.Code, qrcode.Low)
 			if err != nil {
 				c.clientLog.Errorf("failed to encode QR: %v", err)
 				return "", err
 			}
 			qr.DisableBorder = true
-			return qr.ToSmallString(true), nil
+			return qr.ToString(true), nil
 		} else {
 			log.Infof("login event: %s", evt.Event)
 		}
