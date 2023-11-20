@@ -1,0 +1,9 @@
+.git
+.env
+.dockerignore
+
+Dockerfile
+
+db/whatsapp-openai.db
+db/whatsapp-openai.db-shm
+db/whatsapp-openai.db-wal
