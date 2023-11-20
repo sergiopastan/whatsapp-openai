@@ -45,7 +45,9 @@ func (h *Handler) getResponse(ctx context.Context, msg string) string {
 		return "ups, intenta de nuevo"
 	}
 
-	return resp.Choices[0].Message.Content
+	ans := resp.Choices[0].Message.Content
+	log.Infof("openai message: %v", ans)
+	return ans
 }
 
 func (h *Handler) Execute(ctx context.Context, evt *events.Message) {
