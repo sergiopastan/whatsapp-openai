@@ -15,5 +15,6 @@ FROM alpine:latest
 RUN apk update && apk add ca-certificates tzdata g++ && apk add dnsmasq && rm -rf /var/cache/apk/*
 WORKDIR /app
 COPY --from=builder /app/build/main .
+COPY ./db/ ./db/
 
 CMD ["./main"]
