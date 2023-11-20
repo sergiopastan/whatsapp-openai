@@ -10,6 +10,7 @@ import (
 
 	"github.com/sergiopastan/whatsapp-openai/config"
 	"github.com/sergiopastan/whatsapp-openai/database"
+	"github.com/sergiopastan/whatsapp-openai/openai"
 	"github.com/sergiopastan/whatsapp-openai/whatsapp"
 )
 
@@ -22,6 +23,8 @@ func main() {
 		log.WithError(err).Fatal("failed to create db connection")
 	}
 	wspClient, err := whatsapp.NewClient(db)
+	openaiHandler := openai.NewHandler(wspClient)
+	wspClient.AddEventHandler(whatsapp.MessageReceiptHandler(openaiHandler))
 	if err != nil {
 		log.WithError(err).Fatal("failed to create whatsapp client")
 	}
@@ -33,6 +36,8 @@ func main() {
 	waitForInterrupt()
 
 	log.Info("cleaning up...")
+
+	wspClient.Disconnect()
 
 	log.Info("successful shutdown")
 }

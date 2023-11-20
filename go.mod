@@ -7,6 +7,7 @@ require (
 	github.com/sirupsen/logrus v1.9.3
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	go.mau.fi/whatsmeow v0.0.0-20231119181455-ae6bd2c11b53
+	google.golang.org/protobuf v1.31.0
 )
 
 require (
@@ -18,5 +19,4 @@ require (
 	golang.org/x/crypto v0.15.0 // indirect
 	golang.org/x/net v0.17.0 // indirect
 	golang.org/x/sys v0.14.0 // indirect
-	google.golang.org/protobuf v1.31.0 // indirect
 )
