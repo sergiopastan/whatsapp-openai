@@ -8,6 +8,7 @@ import (
 
 type Config struct {
 	DbConfig
+	OpenAIAPIKey string
 }
 
 type DbConfig struct {
@@ -25,5 +26,6 @@ func Load() Config {
 			DBIdlePoolSize: 25,
 			DBConnLifetime: 5 * time.Minute,
 		},
+		OpenAIAPIKey: os.Getenv("OPENAI_APIKEY"),
 	}
 }

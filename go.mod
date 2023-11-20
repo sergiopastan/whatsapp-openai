@@ -4,6 +4,7 @@ go 1.21
 
 require (
 	github.com/mattn/go-sqlite3 v1.14.18
+	github.com/sashabaranov/go-openai v1.17.8
 	github.com/sirupsen/logrus v1.9.3
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	go.mau.fi/whatsmeow v0.0.0-20231119181455-ae6bd2c11b53

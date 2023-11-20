@@ -16,6 +16,7 @@ import (
 
 func main() {
 	var conf = config.Load()
+	ctx := context.Background()
 
 	configureLogger()
 	db, err := database.Connect(conf.DbConfig)
@@ -23,12 +24,12 @@ func main() {
 		log.WithError(err).Fatal("failed to create db connection")
 	}
 	wspClient, err := whatsapp.NewClient(db)
-	openaiHandler := openai.NewHandler(wspClient)
-	wspClient.AddEventHandler(whatsapp.MessageReceiptHandler(openaiHandler))
+	openaiHandler := openai.NewHandler(conf.OpenAIAPIKey, wspClient)
+	wspClient.AddEventHandler(whatsapp.MessageReceiptHandler(ctx, openaiHandler))
 	if err != nil {
 		log.WithError(err).Fatal("failed to create whatsapp client")
 	}
-	err = wspClient.Start(context.Background())
+	err = wspClient.Start(ctx)
 	if err != nil {
 		log.WithError(err).Fatal("failed to start whatsapp connection")
 	}

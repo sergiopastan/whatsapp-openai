@@ -10,9 +10,8 @@ type eventHandler interface {
 	Execute(context.Context, *events.Message)
 }
 
-func MessageReceiptHandler(handler eventHandler) func(interface{}) {
+func MessageReceiptHandler(ctx context.Context, handler eventHandler) func(interface{}) {
 	return func(rawEvt interface{}) {
-		ctx := context.Background()
 		switch evt := rawEvt.(type) {
 		case *events.Message:
 			handler.Execute(ctx, evt)
